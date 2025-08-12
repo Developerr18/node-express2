@@ -11,22 +11,25 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api", [logger, authorize]);
+// app.use("/api", [logger, authorize]);
 
 app.get("/", (req, res) => {
   res.send("Homepage");
 });
 
 app.get("/about", (req, res) => {
+  // console.log(req.user); // undefined
   res.send("About page");
 });
 
 app.get("/api/products", (req, res) => {
+  console.log(req.user);
   res.send("Products");
 });
 
-app.get("/api/items", (req, res) => {
-  res.send("Items");
+app.get("/api/users", [logger, authorize], (req, res) => {
+  console.log(req.user); // { name: 'john', id: 3 }
+  res.send("Users List");
 });
 
 app.listen(5000, () => {
