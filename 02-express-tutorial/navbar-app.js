@@ -3,7 +3,7 @@ const path = require("path");
 
 const app = express();
 
-// setup and serve static files and middleware
+// setup and serve static files with middleware
 app.use(express.static("./public"));
 
 // app.get("/", (req, res) => {

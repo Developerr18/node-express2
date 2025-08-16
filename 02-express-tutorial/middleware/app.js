@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
 const logger = require("./logger");
 const authorize = require("./authorize");
 
@@ -12,6 +13,8 @@ app.use((req, res, next) => {
 });
 
 // app.use("/api", [logger, authorize]);
+
+app.use(morgan("tiny"));
 
 app.get("/", (req, res) => {
   res.send("Homepage");
